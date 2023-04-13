@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+.mainButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 50%;
+    margin-left: 27em;
+    margin-top: -2.5em;
+    gap: 10em;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+}

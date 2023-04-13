@@ -1,0 +1,32 @@
+.main{
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 10px;
+    flex-direction: row;
+}
+
+.main input{
+
+    width: 20em;
+    height: 2.5em;
+    background-color:rgb(197, 135, 255);
+    border-style: solid;
+    border-color:rgb(49, 0, 95);
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.main button{
+    width: 5em;
+    height: 2em;
+    background-color:rgb(49, 0, 95) ;
+    border-radius: 10px;
+    color: aliceblue;
+
+}
+
+.btn{
+    margin-top: 22.5px;
+    margin-left: 4px;
+}

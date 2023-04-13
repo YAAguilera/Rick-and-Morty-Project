@@ -1,0 +1,24 @@
+.cont{
+    background-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 10px;
+    width: fit-content;
+    padding: 1em;
+    border-radius: 10px
+    
+}
+.cont:hover{
+    box-shadow: 5px 7px 23px 4px rgba(0,0,0,0.75);
+
+}
+
+.closeBtn{
+    display:flex;
+    justify-content: flex-end;
+    background-color: rgba(255, 0, 0, 0.459);
+}
+
+.cont img{
+    border-radius: 10px;
+    border: 7px double rgb(0, 99, 16) ;
+}

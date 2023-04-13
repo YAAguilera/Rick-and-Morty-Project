@@ -1,0 +1,24 @@
+.main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.emailIn{
+border-radius: 5px;
+color: blueviolet;
+margin-right: 10px;
+}
+
+.passIn{
+    margin-left: 5px;
+border-radius: 5px;
+}
+
+.boton{
+    margin-left: 5px;
+    background-color: rgb(94, 0, 182);
+    border-color: rgb(197, 134, 255);
+    border-radius: 5px;
+    color: white;
+}

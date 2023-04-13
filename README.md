@@ -1,70 +1,162 @@
-# Getting Started with Create React App
+# **💪 HW7 | Testing - Integration**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **🕒 DURACIÓN ESTIMADA**
 
-## Available Scripts
+XX minutos
 
-In the project directory, you can run:
+<br />
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<div align="center">
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## **💻 RICK AND MORTY APP 💻**
 
-### `npm test`
+</div>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **📝 INTRODUCCIÓN**
 
-### `npm run build`
+En esta homework construiremos algunos test para validar que nuestro proyecto esté funcionando correctamente.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Te daremos instrucciones solo para construir algunos test del lado de tu Back-End, pero tu puedes crear todos los que gustes.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Finalmente te brindaremos información para que aprendas a testear tu Front-End.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br />
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## **📋 INSTRUCCIONES**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **👩‍💻 EJERCICIO 01 | Dependencias**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Instala las siguientes dependencias en el **`package.json`** de tu servidor:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+-  **jest**
+-  **supertest**
 
-## Learn More
+Además, dentro del **`package.json`** deberás agregar el siguiente script:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+   "test": "jest --detectOpenHandles"
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br />
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### **👩‍💻 EJERCICIO 02 | Modularizar el Server**
 
-### Analyzing the Bundle Size
+1. Dentro de la carpeta **src** debes crear un archivo llamado **`app.js`**.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. Luego de crealo tendrás que copiar y pegar todo lo que tienes en tu archivo **`index.js`** dentro de este, exceptuando la ejecución de la función **listen**. Esta función debe permanecer en tu archivo **`index.js`**.
 
-### Making a Progressive Web App
+3. Dentro de tu archivo **`app.js`** debes exportar tu servidor, y luego importarlo dentro de tu archivo **`index.js`**.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+> [**NOTA**]: ten en cuenta que la variable PORT (si es que tienes una) debe permanecer en el archivo **`index`**.
 
-### Advanced Configuration
+<br />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+### **👩‍💻 EJERCICIO 03 | Testing Template**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Dirígete a la carpeta **test**. En esta crea un archivo llamado **`index.test.js`**. Aquí desarrollaremos el testing.
 
-### `npm run build` fails to minify
+1. Dentro del archivo que acabas de crear tendrás que importar los siguientes elementos:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ```javascript
+   const app = require('../src/app');
+   const session = require('supertest');
+   const agent = session(app);
+   ```
+
+2. Crea la primer función **describe** con el mensaje **"_Test de RUTAS_"**.
+
+Recuerda que todos los ejercicios de testing serán asincrónicos, ya que estaremos ejecutando rutas. ¡Puedes utilizar **promesas** o **async await**!
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 04 | GET /rickandmorty/character/:id**
+
+Crea un **describe** con el mensaje '**`GET /rickandmorty/character/:id`**'.
+
+1. **PRIMER TEST**:
+
+   Crea un **it** con el mensaje '**`Responde con status: 200`**'. En su **callback** pega el siguiente código:
+
+   ```javascript
+   await agent.get('/rickandmorty/character/1').expect(200);
+   ```
+
+2. **SEGUNDO TEST**:
+
+   Crea un **it** con el mensaje '**`Responde un objeto con las propiedades: "id", "name", "species", "gender", "status", "origin" e "image"`**'.
+
+   Aquí tendrás que obtener la respuesta de esta ruta. Valida si en la propiedad **body** de la respuesta obtienes todas las propiedades correspondientes.
+
+> [**PISTA**]: podrías validar esto con el métodos [**`toHaveProperty`**](https://jestjs.io/docs/expect#tohavepropertykeypath-value).
+
+3. **TERCER TEST**:
+
+   Crea un **it** con el mensaje '**`Si hay un error responde con status: 500`**'. Aquí tendrás que validar que este será el status si se ingresa un id que no existe para buscar al personaje. Es decir, tendrás que forzar el error.
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 05 | GET /rickandmorty/login**
+
+Crea un nuevo describe con el comentario: **"_GET /rickandmorty/login_"**. En este test tendrás que validar dos cosas:
+
+1. Valida que, si ejecutas esta ruta pasándole la información de login (email y password) correctas, debes obtener un objeto como este:
+
+   ```js
+   {
+      access: true;
+   }
+   ```
+
+> [**NOTA**]: recuerda que la información la debes enviar por **`Query`**. Además, recuerda que la información de login se encuentra en tu achivo **`/src/utils/index`**.
+
+2. Ahora tendrás que testear que en el caso de enviar la información incorrecta la porpiedad **access** sea **`false`**.
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 06 | POST /rickandmorty/fav**
+
+Crea un nuevo describe con el texto : **"_POST /rickandmorty/fav_"**. Dentro de este test tendrás que validar:
+
+1. Lo que envíes por body debe ser devuelto en un arreglo.
+
+2. Si vuelves a enviar un nuevo elemento por body, este debe ser devuelto en un arreglo que incluye un elemento enviado previamente.
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 07 | DELETE /rickandmorty/fav/:id**
+
+Crea un nuevo describe con el texto : **"_DELETE /rickandmorty/fav/:id_"**. Dentro de este test tendrás que validar:
+
+1. Primero deberás testear que lo que devuelva esta ruta, en el caso de que no haya ningún personaje con el ID que envías, sea un arreglo con los elementos previos sin modificar.
+
+2. Luego debes testear que cuando envías un ID válido se elimine correctamente al personaje.
+
+<br />
+
+---
+
+## **💪 EXTRA CREDIT | Testing Front-End**
+
+Te invitamos a que revises los **`Recursos adicionales`** para investigar como testear un **Front-End** con React y Jest.
+
+## **🔎 Recursos adicionales**
+
+-  Documentación [**Matchers From Jest**](https://jestjs.io/docs/using-matchers)
+-  Documentación [**React-Jest Testing**](https://testing-library.com/docs/react-testing-library/intro/)
+-  Documentación [**Jest - Enzyme**](https://enzymejs.github.io/enzyme/docs/guides/jest.html)
